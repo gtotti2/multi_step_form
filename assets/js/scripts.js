@@ -2,7 +2,8 @@
 jQuery(document).ready(function() {
 	
 
-    
+            
+
     /*
         Form
     */
@@ -56,6 +57,49 @@ jQuery(document).ready(function() {
     	});
     	
     });
+
+
+    // Lógica para filtrar conteúdos
+
+        btnRadio = document.querySelectorAll("label.btn");
+        inputRadio = document.querySelectorAll("label>input");
+
+        for (var i = btnRadio.length - 1; i >= 0; i--) {
+            btnRadio[i].addEventListener("click",function(e){
+                // Adicionar classe checked ao label clicado
+                    for (var i = btnRadio.length - 1; i >= 0; i--) {
+                        btnRadio[i].classList.remove("checked");
+                        btnRadio[i].querySelector("input").setAttribute("checked", false);
+                    }
+                        this.classList.add("checked");
+                        this.querySelector("input").setAttribute("checked", true);
+
+
+                    
+
+                // selecionar span com a mesma id que o click e remover a classe hidden
+                    areaEscolhida = e.currentTarget.id;
+                    
+                    var spanEtapa3 = document.querySelectorAll(".etapa3 span");
+
+
+                        if(areaEscolhida){
+                            for(i = 0; i < spanEtapa3.length; i++){
+                                spanEtapa3[i].classList.add("hidden");
+                                spanEtapa3[i].classList.remove("active");
+                                if(spanEtapa3[i].classList.contains(areaEscolhida))  {
+                                    spanEtapa3[i].classList.remove("hidden");
+                                    spanEtapa3[i].classList.add("active");
+                                }
+                            }       
+                        } 
+                        else {
+                            for(i = 0; i < spanEtapa3.length; i++){
+                                spanEtapa3[i].classList.remove("active");
+                            }
+                        }
+                    })
+                }
     
     
 });
